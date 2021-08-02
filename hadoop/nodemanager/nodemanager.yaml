@@ -138,3 +138,34 @@ data:
     #...
   log4j.properties: |
     #...
+
+
+
+
+# Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: hadoop-nodemanager-headless
+  namespace: di-hadoop-nodemanager
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/path: "/metrics"
+    prometheus.io/port: "7000"
+  labels:
+    app: hadoop
+    component: nodemanager
+spec:
+  ports:
+    - name: nm-rpc-port
+      port: 1
+    - name: nm-ui-port
+      port: 2
+    - name: nm-rss-port
+      port: 3
+    - name: jmx-exporter-port
+      port: 4
+  clusterIP: None
+  selector:
+    app: hadoop
+    component: nodemanager
