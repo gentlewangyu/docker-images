@@ -1,0 +1,140 @@
+# NodeManager StatefulSet
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: hadoop-nodemanager
+  namespace: di-hadoop-nodemanager
+  labels:
+    app: hadoop
+    component: nodemanager
+spec:
+  serviceName: hadoop-nodemanager-headless
+  replicas: 100
+  updateStrategy:
+    type: RollingUpdate
+  podManagementPolicy: Parallel
+  template:
+    metadata:
+      labels:
+        app: hadoop
+        component: nodemanager
+    spec:
+      nodeSelector:
+        app: hadoop
+      securityContext:
+        fsGroup: 1000
+      containers:
+        - name: hadoop-nodemanager
+          image: xxxx/di/nodemanager:xxx
+          imagePullPolicy: IfNotPresent
+          command: ["sh", "-c"]
+          args:
+            - >
+              bin/yarn-daemon.sh start nodemanager
+          resources:
+            requests:
+              memory: 180Gi
+              cpu: 42
+            limits:
+              memory: 210Gi
+              cpu: 48
+          ports:
+            - name: nm-rpc-port
+              containerPort: xxx
+            - name: nm-ui-port
+              containerPort: yyy
+            - name: nm-rss-port
+              containerPort: 7377
+            - name: jmxexporter
+              containerPort: zzzz
+          envFrom:
+            - configMapRef:
+                name: hadoop-config-1
+          #readinessProbe:
+          #    exec:
+          #        command:
+          #          - "/bin/sh"
+          #          - "-c"
+          #          - "bin/nm-alive-check.sh"
+          #    initialDelaySeconds: 120
+          #    timeoutSeconds: 300
+          #livenessProbe:
+          #    exec:
+          #        command:
+          #          - "/bin/sh"
+          #          - "-c"
+          #          - "bin/nm-alive-check.sh"
+          #    initialDelaySeconds: 15
+          #    timeoutSeconds: 5
+          volumeMounts:
+            - name: yarn-nodemanager-local-dirs
+              mountPath: xxxx
+              subPath: dsafdsaf
+            - name: yarn-nodemanager-log-dirs
+              mountPath: xxxx
+              subPath: readfile.cfg
+            - name: nm-log-dir
+              mountPath: /data1/logs/yarn/
+              subPath: xxxx
+            - name: hdfs-config
+              mountPath: /conf/hdfs-site.xml
+              subPath: hdfs-site.xml
+            - name: core-config
+              mountPath: /conf/core-site.xml
+              subPath: core-site.xml
+            - name: nm-env-config
+              mountPath: /conf/yarn-env.sh
+              subPath: yarn-env.sh
+            - name: nm-log4j-conf
+              mountPath: /conf/log4j.xxxx
+              subPath: xxxx
+      volumes:
+        - name: hdfs-config
+          configMap:
+            name: di-hadoop-nodemanager-config
+            items:
+              - key: hdfs-site.xml
+                path: hdfs-site.xml
+        - name: core-config
+          configMap:
+            name: di-hadoop-nodemanager-config
+            items:
+              - key: core-site.xml
+                path: core-site.xml
+  selector:
+    matchLabels:
+      app: hadoop
+      component: nodemanager
+  volumeClaimTemplates:
+    - metadata:
+        name: xxxx
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        storageClassName: xxxxx
+        resources:
+          requests:
+            storage:100Gi
+
+
+
+
+ # ConfigMap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: di-hadoop-nodemanager-config
+  namespace: di-hadoop-nodemanager
+  labels:
+    app: hadoop
+    component: nodemanager
+data:
+  yarn-site.xml: |
+    #...
+  core-site.xml: |
+    #...
+  hdfs-site.xml: |
+    #...
+  yarn.env.sh: |
+    #...
+  log4j.properties: |
+    #...
