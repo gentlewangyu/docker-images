@@ -38,7 +38,7 @@ export HADOOP_MAPRED_LOG_DIR=/data1/logs/mapred
 
 export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
 
-wget https://di-dataos.oss-cn-beijing-internal.aliyuncs.com/fileserver/hadoop/hadoop-2.6.0-cdh5.16.1-qtt-0.0.7.tar.gz
+
 
 ADD hadoop-2.6.0-cdh5.16.1-qtt-0.0.7.tar.gz /opt/apps/
 
@@ -46,8 +46,13 @@ RUN mkdir -p /opt/apps/ /etc/apps/hadoop-conf /data1/logs/yarn/ /data1/logs/yarn
      && groupadd yarn \
      && useradd -g yarn hadoop \
      && gpasswd -M yarn hadoop \
-     && chmod 755 /data /var/logs/yarn /var/run/yarn /hbase/conf /var/hadoop \
-     && cd /opt/apps/  ln -s hadoop-2.6.0-cdh5.16.1-qtt-0.0.7 hadoop  \
+     && chmod 755 /opt/apps/ /etc/apps/hadoop-conf /data1/logs/yarn/ /data1/logs/yarn/pids/ \
+     
+RUN cd /opt/apps/ \
+    &&  wget https://di-dataos.oss-cn-beijing-internal.aliyuncs.com/fileserver/hadoop/hadoop-2.6.0-cdh5.16.1-qtt-0.0.7.tar.gz \
+    && tar -zxvf hadoop-2.6.0-cdh5.16.1-qtt-0.0.7.tar.gz \
+    && ln -s hadoop-2.6.0-cdh5.16.1-qtt-0.0.7 hadoop \
+     
   
 USER yarn
 
