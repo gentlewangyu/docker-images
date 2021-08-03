@@ -8,15 +8,6 @@ FROM qtt-di/jdk:8u212
 MAINTAINER cyc
 
 
-#yarn 的目录
-# /data1-15/yarn  755
-
-#可变配置
-#yarn.nodemanager.local-dirs file:///data1-15/yarn
-#yarn.nodemanager.log-dirs file:///data1-15/yarn/containers
-#yarn.nodemanager.resource.cpu-vcores
-#yarn.nodemanager.resource.memory-mb 
-
 RUN mkdir -p /opt/apps/ /etc/apps/hadoop-conf /data1/logs/yarn/ /data1/logs/yarn/pids/   \
      && groupadd yarn \
      && useradd -g yarn hadoop \
