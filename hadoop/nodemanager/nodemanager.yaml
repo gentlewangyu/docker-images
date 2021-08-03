@@ -1,3 +1,26 @@
+ # ConfigMap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: di-hadoop-nodemanager-config
+  namespace: di-hadoop-nodemanager
+  labels:
+    app: hadoop
+    component: nodemanager
+data:
+  yarn-site.xml: |
+    #...
+  core-site.xml: |
+    #...
+  hdfs-site.xml: |
+    #...
+  yarn.env.sh: |
+    #...
+  log4j.properties: |
+    #...
+
+
+
 # NodeManager StatefulSet
 apiVersion: apps/v1
 kind: StatefulSet
@@ -114,30 +137,6 @@ spec:
         resources:
           requests:
             storage:100Gi
-
-
-
-
- # ConfigMap
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: di-hadoop-nodemanager-config
-  namespace: di-hadoop-nodemanager
-  labels:
-    app: hadoop
-    component: nodemanager
-data:
-  yarn-site.xml: |
-    #...
-  core-site.xml: |
-    #...
-  hdfs-site.xml: |
-    #...
-  yarn.env.sh: |
-    #...
-  log4j.properties: |
-    #...
 
 
 
