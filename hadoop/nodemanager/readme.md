@@ -29,13 +29,13 @@ export HADOOP_MAPRED_PID_DIR=${HADOOP_PID_DIR}
 # set hadoop conf dir
 export HADOOP_CONF_DIR=/etc/apps/hadoop-conf
 
-export YARN_LOG_DIR=/data1/logs/yarn
-export HADOOP_PID_DIR="${YARN_LOG_DIR}/pids"
-export YARN_PID_DIR=${HADOOP_PID_DIR}
+export YARN_LOG_DIR=/data1/logs/yarn  
+export HADOOP_PID_DIR="${YARN_LOG_DIR}/pids"  
+export YARN_PID_DIR=${HADOOP_PID_DIR}  
 
-export HADOOP_MAPRED_LOG_DIR=/data1/logs/mapred
+export HADOOP_MAPRED_LOG_DIR=/data1/logs/mapred  
 
-export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
+export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin   
 
 5、目录
 
