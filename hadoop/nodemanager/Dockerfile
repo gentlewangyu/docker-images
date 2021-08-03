@@ -30,20 +30,18 @@ RUN cd /opt/apps/ \
 
 # TO BE move to ConfigMap env  644
 
-RUN export HADOOP_HOME=/opt/apps/hadoop \
-    && export HADOOP_PID_DIR="${HADOOP_HOME}/pids"  \
-    && export YARN_PID_DIR=${HADOOP_PID_DIR}    \
-    && export HADOOP_MAPRED_PID_DIR=${HADOOP_PID_DIR} \
-    # set hadoop conf dir
-    && export HADOOP_CONF_DIR=/etc/apps/hadoop-conf \
-    && export YARN_LOG_DIR=/data1/logs/yarn \
-    && export HADOOP_PID_DIR="${YARN_LOG_DIR}/pids" \
-    &&  export YARN_PID_DIR=${HADOOP_PID_DIR}   \
-    && export HADOOP_MAPRED_LOG_DIR=/data1/logs/mapred  \
-    && export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin \
-
-
+ENV HADOOP_HOME=/opt/apps/hadoop 
+ENV HADOOP_PID_DIR="${HADOOP_HOME}/pids"  
+ENV YARN_PID_DIR=${HADOOP_PID_DIR}  
+ENV HADOOP_MAPRED_PID_DIR=${HADOOP_PID_DIR} 
+ENV  HADOOP_CONF_DIR=/etc/apps/hadoop-conf 
+ENV  YARN_LOG_DIR=/data1/logs/yarn 
+ENV HADOOP_PID_DIR="${YARN_LOG_DIR}/pids" 
+ENV YARN_PID_DIR=${HADOOP_PID_DIR}   
+ENV HADOOP_MAPRED_LOG_DIR=/data1/logs/mapred  
+ENV PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin 
 ENV HADOOP_HOME /opt/apps/hadoop
 ENV PATH $PATH:$HADOOP_HOME/bin
+
 USER yarn
 WORKDIR $HADOOP_HOME
