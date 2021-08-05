@@ -1,0 +1,151 @@
+
+<!--
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License. See accompanying LICENSE file.
+-->
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+  <property>
+    <name>fs.defaultFS</name>
+    <value>hdfs://ns1</value>
+  </property>
+  <property>
+    <name>fs.getspaceused.classname</name>
+    <value>org.apache.hadoop.hdfs.server.datanode.fsdataset.impl.ReplicaCachingGetSpaceUsed</value>
+  </property>
+  <property>
+    <name>fs.jfs.cache.copy.simple.max.byte</name>
+    <value>-1</value>
+  </property>
+  <property>
+    <name>fs.permissions.umask-mode</name>
+    <value>022</value>
+  </property>
+  <property>
+    <name>fs.trash.checkpoint.interval</name>
+    <value>30</value>
+  </property>
+  <property>
+    <name>fs.trash.interval</name>
+    <value>1440</value>
+  </property>
+  <property>
+    <name>ha.zookeeper.session-timeout.ms</name>
+    <value>60000</value>
+  </property>
+  <property>
+    <name>hadoop.home</name>
+    <value>/opt/apps/hadoop</value>
+  </property>
+  <property>
+    <name>hadoop.http.staticuser.user</name>
+    <value>hadoop</value>
+  </property>
+  <property>
+    <name>hadoop.proxyuser.hadoop.groups</name>
+    <value>*</value>
+  </property>
+  <property>
+    <name>hadoop.proxyuser.hadoop.hosts</name>
+    <value>*</value>
+  </property>
+  <property>
+    <name>hadoop.proxyuser.hdfs.groups</name>
+    <value>*</value>
+  </property>
+  <property>
+    <name>hadoop.proxyuser.hdfs.hosts</name>
+    <value>*</value>
+  </property>
+  <property>
+    <name>hadoop.proxyuser.hive.groups</name>
+    <value>*</value>
+  </property>
+  <property>
+    <name>hadoop.proxyuser.hive.hosts</name>
+    <value>*</value>
+  </property>
+  <property>
+    <name>hadoop.proxyuser.hue.groups</name>
+    <value>*</value>
+  </property>
+  <property>
+    <name>hadoop.proxyuser.hue.hosts</name>
+    <value>*</value>
+  </property>
+  <property>
+    <name>hadoop.proxyuser.knox.groups</name>
+    <value>*</value>
+  </property>
+  <property>
+    <name>hadoop.proxyuser.knox.hosts</name>
+    <value>*</value>
+  </property>
+  <property>
+    <name>hadoop.proxyuser.mapred.groups</name>
+    <value>*</value>
+  </property>
+  <property>
+    <name>hadoop.proxyuser.mapred.hosts</name>
+    <value>*</value>
+  </property>
+  <property>
+    <name>hadoop.proxyuser.oozie.groups</name>
+    <value>*</value>
+  </property>
+  <property>
+    <name>hadoop.proxyuser.oozie.hosts</name>
+    <value>*</value>
+  </property>
+  <property>
+    <name>hadoop.proxyuser.yarn.groups</name>
+    <value>*</value>
+  </property>
+  <property>
+    <name>hadoop.proxyuser.yarn.hosts</name>
+    <value>*</value>
+  </property>
+  <property>
+    <name>hadoop.security.authentication</name>
+    <value>simple</value>
+  </property>
+  <property>
+    <name>hadoop.security.authentication.use.has</name>
+    <value>true</value>
+  </property>
+  <property>
+    <name>hadoop.security.authorization</name>
+    <value>false</value>
+  </property>
+  <property>
+    <name>hadoop.tmp.dir</name>
+    <value>/data1/hadoop/tmp</value>
+  </property>
+  <property>
+    <name>io.compression.codecs</name>
+    <value>org.apache.hadoop.io.compress.DefaultCodec,org.apache.hadoop.io.compress.GzipCodec,org.apache.hadoop.io.compress.BZip2Codec,org.apache.hadoop.io.compress.DeflateCodec,org.apache.hadoop.io.compress.SnappyCodec,org.apache.hadoop.io.compress.Lz4Codec</value>
+  </property>
+  <property>
+    <name>io.file.buffer.size</name>
+    <value>131072</value>
+  </property>
+  <property>
+    <name>job.output.oss.redirect</name>
+    <value>false</value>
+  </property>
+  <property>
+    <name>net.topology.script.number.args</name>
+    <value>1000</value>
+  </property>
+</configuration>
