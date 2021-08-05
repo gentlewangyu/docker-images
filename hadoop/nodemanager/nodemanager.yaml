@@ -42,8 +42,15 @@ spec:
         app: hadoop
         component: nodemanager
     spec:
-      nodeSelector:
-        app: hadoop
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: team
+                operator: In
+                values:
+                - di_nm
       securityContext:
         fsGroup: 1000
       containers:
@@ -124,6 +131,11 @@ spec:
             items:
               - key: core-site.xml
                 path: core-site.xml
+      tolerations:
+      - effect: NoSchedule
+        key: team
+        operator: Equal
+        value: di_nm
   selector:
     matchLabels:
       app: hadoop
